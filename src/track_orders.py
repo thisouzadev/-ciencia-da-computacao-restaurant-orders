@@ -58,7 +58,27 @@ class TrackOrders:
         return set_days.difference(set_customer_visited)
 
     def get_busiest_day(self):
-        pass
+        count_days = {}
+
+        for item in self.orders:
+            if item[2] not in count_days:
+                count_days[item[2]] = 1
+            else:
+                count_days[item[2]] += 1
+
+        busiest_day = max(count_days, key=lambda k: count_days[k])
+
+        return busiest_day
 
     def get_least_busy_day(self):
-        pass
+        count_days = {}
+
+        for item in self.orders:
+            if item[2] not in count_days:
+                count_days[item[2]] = 1
+            else:
+                count_days[item[2]] += 1
+
+        least_busiest_day = min(count_days, key=lambda k: count_days[k])
+
+        return least_busiest_day
