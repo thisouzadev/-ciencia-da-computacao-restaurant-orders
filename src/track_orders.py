@@ -24,7 +24,21 @@ class TrackOrders:
         return food_most_frequent
 
     def get_never_ordered_per_customer(self, customer):
-        pass
+        menu = []
+        customer_eating = []
+
+        for item in self.orders:
+            # CRIA UMA LISTA COM O CARDÁPIO
+            if item[1] not in menu:
+                menu.append(item[1])
+
+            # CRIA UMA LISTA COM TODOS OS PRATOS QUE UM cliente JÁ COMEU
+            if item[0] == customer:
+                customer_eating.append(item[1])
+
+        set_meu = set(menu)
+        set_customer_eating = set(customer_eating)
+        return set_meu.difference(set_customer_eating)
 
     def get_days_never_visited_per_customer(self, customer):
         pass
