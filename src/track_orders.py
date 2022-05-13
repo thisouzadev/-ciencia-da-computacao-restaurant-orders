@@ -1,7 +1,28 @@
+import csv
+
+
 class TrackOrders:
+    orders = []
+    days = set()
+    order = set()
+
+    def __init__(self):
+        self.orders = []
+        self.days = set()
+        self.order = set()
+
+        with open("data/orders_1.csv") as orders_file:
+            reader = csv.DictReader(
+                orders_file, fieldnames=["customer", "meal", "day"]
+            )
+
+            for order in reader:
+                self.days.add(order["day"])
+                self.order.add(order["meal"])
+
     # aqui. deve expor a quantidade de estoque
     def __len__(self):
-        pass
+        return len(self.orders)
 
     def add_new_order(self, customer, order, day):
         pass
